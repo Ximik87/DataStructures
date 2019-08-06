@@ -3,6 +3,11 @@ using DataStructures.Interfaces;
 
 namespace DataStructures
 {
+    /// <summary>
+    ///  Очередь на основе замкнутого массива
+    ///  Например 5,-,-,1,2,3,4
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class CustomQueue<T> : IQueue<T>
     {
         private int _size;
