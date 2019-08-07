@@ -7,5 +7,6 @@ namespace DataStructures.Interfaces
         int Count { get; }
         void Enqueue(T item);
         T Dequeue();
+        T Peek();
     }
 }

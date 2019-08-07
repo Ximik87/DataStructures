@@ -1,3 +1,4 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DataStructures.UnitTests
@@ -6,7 +7,7 @@ namespace DataStructures.UnitTests
     public class CustomQueueTests
     {
         [TestMethod]
-        public void QueueTest()
+        public void Dequeue_Test()
         {
             // ARRANGE
             var queue = new CustomQueue<int>();
@@ -23,5 +24,58 @@ namespace DataStructures.UnitTests
             Assert.AreEqual(2, queue.Dequeue());
             Assert.AreEqual(3, queue.Dequeue());
         }
+
+        [TestMethod]
+        public void Enqueue_Test()
+        {
+            // ARRANGE
+            var queue = new CustomQueue<int>();
+
+            // ACT
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+
+            // ASSERT
+            Assert.AreEqual(2, queue.Count);
+        }
+
+        [TestMethod]
+        public void Overflow_Test()
+        {
+            // ARRANGE
+            var queue = new CustomQueue<int>();
+
+            // ACT
+            for (int i = 0; i < 10; i++)
+            {
+                queue.Enqueue(i);
+            }
+
+            // ASSERT
+            Assert.AreEqual(10, queue.Count);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void EmptyDequeue_Test()
+        {
+            // ARRANGE
+            var queue = new CustomQueue<int>();
+
+            // ACT
+            queue.Dequeue();
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void EmptyPeek_Test()
+        {
+            // ARRANGE
+            var queue = new CustomQueue<int>();
+
+            // ACT
+            queue.Peek();
+        }
+
     }
 }

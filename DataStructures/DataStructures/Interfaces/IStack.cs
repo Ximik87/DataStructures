@@ -6,6 +6,10 @@ namespace DataStructures.Interfaces
     {
         int Count { get; }
         void Push(T item);
+        /// <summary>
+        ///  Достать элемент, сложность  O(1)
+        /// </summary>
+        /// <returns></returns>
         T Pop();
         T Peek();
     }
