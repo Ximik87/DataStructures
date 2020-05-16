@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 3.1.101
     - name: Install dependencies
-      run: dotnet restore  DataStructures\DataStructures.sln
+      run: dotnet restore  DataStructures/DataStructures.sln
     - name: Build
-      run: dotnet build --configuration Release --no-restore DataStructures\DataStructures.sln
+      run: dotnet build --configuration Release --no-restore DataStructures/DataStructures.sln
     - name: Test
-      run: dotnet test --no-restore --verbosity normal  DataStructures\DataStructures.sln
+      run: dotnet test --no-restore --verbosity normal  DataStructures/DataStructures.sln
