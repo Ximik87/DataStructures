@@ -1,5 +1,8 @@
 name: .NET Core
 
+env:
+  solution: 'DataStructures/DataStructures.sln'
+
 on:
   push:
     branches: [ master ]
