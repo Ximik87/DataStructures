@@ -2,6 +2,7 @@ name: .NET Core
 
 env:
   solution: 'DataStructures/DataStructures.sln'
+  tests: 'DataStructures/DataStructures.UnitTests/DataStructures.UnitTests.csproj'
 
 on:
   push:
@@ -23,6 +24,6 @@ jobs:
     - name: Install dependencies
       run: dotnet restore $solution
     - name: Build
-      run: dotnet build --configuration Release --no-restore DataStructures/DataStructures.sln
+      run: dotnet build --configuration Release --no-restore $solution
     - name: Test
-      run: dotnet test --no-restore --verbosity normal  DataStructures/DataStructures.sln
+      run: dotnet test --no-restore --verbosity normal  $tests
