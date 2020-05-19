@@ -3,12 +3,15 @@ using DataStructures.Interfaces;
 
 namespace DataStructures
 {
+    /// <summary>
+    ///  Стек основанный на массиве элементов
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class CustomStack<T> : IStack<T>
     {
         private T[] _array;
-        int _index;
 
-        public int Count => _index;
+        public int Count { get; private set; }
 
         public CustomStack()
         {
@@ -16,16 +19,17 @@ namespace DataStructures
         }
 
         /// <summary>
-        /// <inheritdoc/>
-        /// </summary>       
+        ///  Достать элемент, сложность  O(1)
+        /// </summary>
+        /// <returns></returns> 
         public T Pop()
         {
-            if (_index == 0)
+            if (Count == 0)
             {
                 throw new InvalidOperationException("Stack is empty");
             }
-            _index--;
-            return _array[_index];
+            Count--;
+            return _array[Count];
         }
 
         /// <summary>
@@ -35,8 +39,8 @@ namespace DataStructures
         public void Push(T item)
         {
             CheckCapacity();
-            _array[_index] = item;
-            _index++;
+            _array[Count] = item;
+            Count++;
         }
 
         /// <summary>
@@ -45,18 +49,18 @@ namespace DataStructures
         /// <returns></returns>
         public T Peek()
         {
-            if (_index == 0)
+            if (Count == 0)
             {
                 throw new InvalidOperationException("Stack is empty");
             }
-            return _array[_index];
+            return _array[Count];
         }
         
         private void CheckCapacity()
         {
-            if (_array.Length == _index)
+            if (_array.Length == Count)
             {
-                var _newArray = new T[_index * 2];
+                var _newArray = new T[Count * 2];
                 Array.Copy(_array, _newArray, _array.Length);
                 _array = _newArray;
             }

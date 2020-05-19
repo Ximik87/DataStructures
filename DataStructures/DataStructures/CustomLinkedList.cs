@@ -3,14 +3,22 @@ using DataStructures.Interfaces;
 
 namespace DataStructures
 {
+    /// <summary>
+    /// Односвязный список
+    /// Каждый элемент знает только про следующий элемент списка
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class CustomLinkedList<T> : ILinkedList<T>
     {
-        private int _count;
         private Node<T> _head;
         private Node<T> _tail;
 
-        public int Count => _count;
+        public int Count { get; private set; }
 
+        /// <summary>
+        /// Добавление элемента,  сложность O(1)
+        /// </summary>
+        /// <param name="item"></param>
         public void Add(T item)
         {
             var newItem = new Node<T>(item);
@@ -24,13 +32,15 @@ namespace DataStructures
                 _tail.Next = newItem;
             }
             _tail = newItem;
-            _count++;
+            Count++;
         }
 
+        /// <summary>
+        /// Удаление элемента, сложность O(N)
+        /// </summary>
+        /// <param name="item"></param>
         public void Remove(T item)
         {
-            var tt = new Node<T>(item);
-
             var current = _head;
             Node<T> prev = null;
 
@@ -45,7 +55,6 @@ namespace DataStructures
                         {
                             _tail = prev;
                         }
-
                     }
                     else
                     {
@@ -56,9 +65,8 @@ namespace DataStructures
                         }
                     }
 
-                    _count--;
+                    Count--;
                     break;
-
                 }
 
                 prev = current;
@@ -69,7 +77,7 @@ namespace DataStructures
 
         public void Clear()
         {
-            _count = 0;
+            Count = 0;
             _head = null;
             _tail = null;
         }

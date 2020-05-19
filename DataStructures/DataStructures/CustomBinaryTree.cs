@@ -26,10 +26,8 @@ namespace DataStructures
                             node.Right = new BinaryNode<T>(item);
                             break;
                         }
-                        else
-                        {
-                            node = node.Right;
-                        }
+
+                        node = node.Right;
                     }
 
                     if (IsLess(item, node.Value))
@@ -39,10 +37,8 @@ namespace DataStructures
                             Root.Left = new BinaryNode<T>(item);
                             break;
                         }
-                        else
-                        {
-                            node = node.Left;
-                        }
+
+                        node = node.Left;
                     }
 
                     if (IsEqual(item, node.Value))
@@ -50,6 +46,43 @@ namespace DataStructures
                 }
             }
 
+        }
+
+        public bool Find(T item)
+        {
+            var node = Root;
+            while (node != null)
+            {
+                if (IsGreater(item, node.Value))
+                {
+                    if (node.Right == null)
+                    {
+                        return false;
+                    }
+
+                    node = node.Right;
+                }
+
+                if (IsLess(item, node.Value))
+                {
+                    if (node.Left == null)
+                    {
+                        return false;
+                    }
+
+                    node = node.Left;
+                }
+
+                if (IsEqual(item, node.Value))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public void Remove(T item)
+        {
+            throw new NotImplementedException();
         }
 
         private bool IsGreater(T first, T second)
@@ -67,46 +100,6 @@ namespace DataStructures
             return first.CompareTo(second) == 0;
         }
 
-        public bool Find(T item)
-        {          
-            var node = Root;
-            while (node != null)
-            {
-                if (IsGreater(item, node.Value))
-                {
-                    if (node.Right == null)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        node = node.Right;
-                    }
-                }
-
-                if (IsLess(item, node.Value))
-                {
-                    if (node.Left == null)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        node = node.Left;
-                    }
-                }
-
-                if (IsEqual(item, node.Value))
-                    return true;
-            }
-
-            return false;
-        }
-
-        public void Remove(T item)
-        {
-            throw new NotImplementedException();
-        }
     }
 
     public class BinaryNode<T>

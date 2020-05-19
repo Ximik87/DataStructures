@@ -5,6 +5,10 @@ using System.Text;
 
 namespace DataStructures
 {
+    /// <summary>
+    /// Хэш таблица, на бакетах, но это не точно
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class CustomHashTable<T> : IHashTable<T>
     {
         private Item<T>[] _items;
@@ -15,6 +19,10 @@ namespace DataStructures
             _items = new Item<T>[_size];
         }
 
+        /// <summary>
+        /// Добавление элемента, сложность  O(1)
+        /// </summary>
+        /// <param name="item"></param>
         public void Add(T item)
         {
             var index = GetHash(item);
